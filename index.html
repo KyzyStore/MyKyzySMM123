@@ -1,0 +1,125 @@
+# MyKyzySMM123
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Kyzy Store</title>
+
+<style>
+body {
+  background: url('https://i.pinimg.com/236x/de/ac/e1/deace1d49eaeb09035359a77fcea97b2.jpg') no-repeat center;
+  background-size: cover;
+  text-align: center;
+  padding: 20px;
+  color: white;
+  font-family: Arial;
+}
+
+.card {
+  background: rgba(0,0,0,0.7);
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 350px;
+  margin: 20px auto;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🚀 KYZY SMM STORE</h1>
+
+<!-- FOLLOWERS -->
+<div class="card">
+  <h2>👥 Followers Instagram</h2>
+  <input type="text" id="link1" placeholder="Link Profil IG"><br><br>
+
+  <select id="paket1">
+    <option>100 Followers - 1K</option>
+    <option>200 Followers - 2K</option>
+    <option>300 Followers - 3K</option>
+    <option>500 Followers - 5K</option>
+     <option>100 Followers - 1K</option>
+    <option>200 Followers - 2K</option>
+    <option>300 Followers - 3K</option>
+    <option>500 Followers - 5K</option>
+    
+  </select><br><br>
+
+  <button onclick="orderFollowers()">🚀 Order Followers</button>
+</div>
+
+<!-- LIKES -->
+<div class="card">
+  <h2>❤️ Likes Instagram</h2>
+  <input type="text" id="link2" placeholder="Link Post IG"><br><br>
+
+  <select id="paket2">
+    <option>100 Likes - 1K</option>
+    <option>200 Likes - 2K</option>
+    <option>300 Likes - 3K</option>
+    <option>400 Likes - 4K</option>
+    <option>500 Likes - 5K</option>
+    <option>600 Likes - 6K</option>
+    <option>700 Likes - 7K</option>
+    <option>800 Likes - 8K</option>
+    <option>900 Likes - 9K</option>
+    <option>1000 Like - 10K</option>
+  </select><br><br>
+
+  <button onclick="orderLikes()">🔥 Order Likes</button>
+</div>
+
+<!-- VIEWS -->
+<div class="card">
+  <h2>👀 Views Instagram</h2>
+  <input type="text" id="link3" placeholder="Link Reels / Video"><br><br>
+
+  <select id="paket3">
+    <option>10.000 Views - 1K</option>
+    <option>20.000 Views - 2K</option>
+    <option>30.000 Views - 3K</option>
+    <option>40.000 Views - 4K</option>
+    <option>50.000 Views - 5K</option>
+    <option>60.000 Views - 6K</option>
+    <option>70.000 Views - 7K</option>
+    <option>80.000 Views - 8K</option>
+    <option>90.000 Views - 9K</option>
+    <option>100.000 Views - 10K</option>
+    
+  </select><br><br>
+
+  <button onclick="orderViews()">👀 Order Views</button>
+</div>
+
+<script>
+function orderFollowers() {
+  var link = document.getElementById("link1").value;
+  var paket = document.getElementById("paket1").value;
+
+  var pesan = "Halo Admin\nSaya mau order Followers IG\n\nPaket: " + paket + "\nLink: " + link;
+  var url = "https://wa.me/62895324562321?text=" + encodeURIComponent(pesan);
+  window.open(url, "_blank");
+}
+
+function orderLikes() {
+  var link = document.getElementById("link2").value;
+  var paket = document.getElementById("paket2").value;
+
+  var pesan = "Halo Admin\nSaya mau order Likes IG\n\nPaket: " + paket + "\nLink: " + link;
+  var url = "https://wa.me/62895324562321?text=" + encodeURIComponent(pesan);
+  window.open(url, "_blank");
+}
+
+function orderViews() {
+  var link = document.getElementById("link3").value;
+  var paket = document.getElementById("paket3").value;
+
+  var pesan = "Halo Admin\nSaya mau order Views IG\n\nPaket: " + paket + "\nLink: " + link;
+  var url = "https://wa.me/62895324562321?text=" + encodeURIComponent(pesan);
+  window.open(url, "_blank");
+}
+</script>
+
+</body>
+</html>
