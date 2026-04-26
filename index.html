@@ -1,124 +1,266 @@
-# MyKyzySMM123
 <!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>Kyzy Store</title>
+<title>Kyzy SMM Panel</title>
 
 <style>
-body {
-  background: url('https://i.pinimg.com/236x/de/ac/e1/deace1d49eaeb09035359a77fcea97b2.jpg') no-repeat center;
-  background-size: cover;
-  text-align: center;
-  padding: 20px;
-  color: white;
-  font-family: Arial;
+body{
+  margin:0;
+  font-family:Arial;
+  background: linear-gradient(135deg,#020617,#0f172a);
+  color:white;
+  text-align:center;
 }
 
-.card {
-  background: rgba(0,0,0,0.7);
-  padding: 20px;
-  border-radius: 10px;
-  max-width: 350px;
-  margin: 20px auto;
+h1{
+  margin:20px;
+  color:#38bdf8;
+}
+
+.container{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+.card{
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+  border-radius:12px;
+  padding:16px;
+  margin:10px;
+  width:300px;
+  box-shadow: 0 0 15px rgba(56,189,248,.3);
+}
+
+input{
+  width:90%;
+  padding:10px;
+  margin:6px 0;
+  border:none;
+  border-radius:8px;
+}
+
+button{
+  padding:10px;
+  width:95%;
+  border:none;
+  border-radius:8px;
+  background:#38bdf8;
+  color:black;
+  font-weight:bold;
+  cursor:pointer;
 }
 </style>
 </head>
 
 <body>
 
-<h1>🚀 KYZY SMM STORE</h1>
+<button onclick="toggleAdmin()">⚙️ Admin</button>
 
-<!-- FOLLOWERS -->
-<div class="card">
-  <h2>👥 Followers Instagram</h2>
-  <input type="text" id="link1" placeholder="Link Profil IG"><br><br>
+<div id="adminBox" style="display:none; margin:20px;">
+<h3>🔐 Admin Nokos</h3>
 
-  <select id="paket1">
-    <option>100 Followers - 1K</option>
-    <option>200 Followers - 2K</option>
-    <option>300 Followers - 3K</option>
-    <option>500 Followers - 5K</option>
-     <option>100 Followers - 1K</option>
-    <option>200 Followers - 2K</option>
-    <option>300 Followers - 3K</option>
-    <option>500 Followers - 5K</option>
-    
-  </select><br><br>
+<input id="adminUser" placeholder="Username">
+<input id="adminPass" type="password" placeholder="Password">
+<button onclick="loginAdmin()">Login</button>
 
-  <button onclick="orderFollowers()">🚀 Order Followers</button>
+<div id="adminPanel" style="display:none;">
+<p>Harga Nokos:</p>
+<input id="setHarga" type="number">
+
+<p>Stok Nokos:</p>
+<input id="setStok" type="number">
+
+<button onclick="saveAdmin()">💾 Simpan</button>
+</div>
 </div>
 
-<!-- LIKES -->
+<h1>🚀 KYZY SMM PANEL</h1>
+
+<div class="container">
+
 <div class="card">
-  <h2>❤️ Likes Instagram</h2>
-  <input type="text" id="link2" placeholder="Link Post IG"><br><br>
-
-  <select id="paket2">
-    <option>100 Likes - 1K</option>
-    <option>200 Likes - 2K</option>
-    <option>300 Likes - 3K</option>
-    <option>400 Likes - 4K</option>
-    <option>500 Likes - 5K</option>
-    <option>600 Likes - 6K</option>
-    <option>700 Likes - 7K</option>
-    <option>800 Likes - 8K</option>
-    <option>900 Likes - 9K</option>
-    <option>1000 Like - 10K</option>
-  </select><br><br>
-
-  <button onclick="orderLikes()">🔥 Order Likes</button>
+<h3>👥 IG Followers</h3>
+<input id="link1" placeholder="Link IG">
+<input id="jumlah1" type="number" oninput="hitung('jumlah1','total1','igf')">
+<p>Rp <span id="total1">0</span></p>
+<button onclick="order('igf','link1','jumlah1')">Order</button>
 </div>
 
-<!-- VIEWS -->
 <div class="card">
-  <h2>👀 Views Instagram</h2>
-  <input type="text" id="link3" placeholder="Link Reels / Video"><br><br>
+<h3>❤️ IG Likes</h3>
+<input id="link2" placeholder="Link Post">
+<input id="jumlah2" type="number" oninput="hitung('jumlah2','total2','igl')">
+<p>Rp <span id="total2">0</span></p>
+<button onclick="order('igl','link2','jumlah2')">Order</button>
+</div>
 
-  <select id="paket3">
-    <option>10.000 Views - 1K</option>
-    <option>20.000 Views - 2K</option>
-    <option>30.000 Views - 3K</option>
-    <option>40.000 Views - 4K</option>
-    <option>50.000 Views - 5K</option>
-    <option>60.000 Views - 6K</option>
-    <option>70.000 Views - 7K</option>
-    <option>80.000 Views - 8K</option>
-    <option>90.000 Views - 9K</option>
-    <option>100.000 Views - 10K</option>
-    
-  </select><br><br>
+<div class="card">
+<h3>👀 IG Views</h3>
+<input id="link3" placeholder="Link Reels">
+<input id="jumlah3" type="number" oninput="hitung('jumlah3','total3','igv')">
+<p>Rp <span id="total3">0</span></p>
+<button onclick="order('igv','link3','jumlah3')">Order</button>
+</div>
 
-  <button onclick="orderViews()">👀 Order Views</button>
+<div class="card">
+<h3>🎵 TikTok Followers</h3>
+<input id="link4" placeholder="Link TikTok">
+<input id="jumlah4" type="number" oninput="hitung('jumlah4','total4','ttf')">
+<p>Rp <span id="total4">0</span></p>
+<button onclick="order('ttf','link4','jumlah4')">Order</button>
+</div>
+
+<div class="card">
+<h3>❤️ TikTok Likes</h3>
+<input id="link5" placeholder="Link Video">
+<input id="jumlah5" type="number" oninput="hitung('jumlah5','total5','ttl')">
+<p>Rp <span id="total5">0</span></p>
+<button onclick="order('ttl','link5','jumlah5')">Order</button>
+</div>
+
+<div class="card">
+<h3>👀 TikTok Views</h3>
+<input id="link6" placeholder="Link Video">
+<input id="jumlah6" type="number" oninput="hitung('jumlah6','total6','ttv')">
+<p>Rp <span id="total6">0</span></p>
+<button onclick="order('ttv','link6','jumlah6')">Order</button>
+</div>
+
+<div class="card">
+<h3>📢 WA Member</h3>
+<input id="link7" placeholder="Link Saluran">
+<input id="jumlah7" type="number" oninput="hitung('jumlah7','total7','wac')">
+<p>Rp <span id="total7">0</span></p>
+<button onclick="order('wac','link7','jumlah7')">Order</button>
+</div>
+
+<div class="card">
+<h3>🔥 Reaction WA</h3>
+<input id="link8" placeholder="Link Post">
+<input id="jumlah8" type="number" oninput="hitung('jumlah8','total8','react')">
+<p>Rp <span id="total8">0</span></p>
+<button onclick="order('react','link8','jumlah8')">Order</button>
+</div>
+
+<!-- NOKOS -->
+<div class="card">
+<h3>📱 Nokos Indonesia 🇮🇩</h3>
+<p>Harga: Rp <span id="hargaNokos"></span></p>
+<p id="stokNokos"></p>
+<input id="catatanNokos" placeholder="Catatan (opsional)">
+<button onclick="orderNokos()">⚡ Beli Nokos</button>
+</div>
+
 </div>
 
 <script>
-function orderFollowers() {
-  var link = document.getElementById("link1").value;
-  var paket = document.getElementById("paket1").value;
 
-  var pesan = "Halo Admin\nSaya mau order Followers IG\n\nPaket: " + paket + "\nLink: " + link;
-  var url = "https://wa.me/62895324562321?text=" + encodeURIComponent(pesan);
-  window.open(url, "_blank");
+// HARGA SOSMED
+const harga = {
+  igf:8, igl:6, igv:1,
+  ttf:35, ttl:7, ttv:1,
+  wac:50, react:30
+};
+
+const minOrder = 500;
+
+// HITUNG
+function hitung(jumlahId,totalId,jenis){
+  let jumlah = document.getElementById(jumlahId).value || 0;
+  let total = jumlah * harga[jenis];
+  document.getElementById(totalId).innerText =
+  Number(total).toLocaleString("id-ID");
 }
 
-function orderLikes() {
-  var link = document.getElementById("link2").value;
-  var paket = document.getElementById("paket2").value;
+// ORDER SOSMED
+function order(jenis,linkId,jumlahId){
+  let link = document.getElementById(linkId).value;
+  let jumlah = document.getElementById(jumlahId).value;
+  let total = jumlah * harga[jenis];
 
-  var pesan = "Halo Admin\nSaya mau order Likes IG\n\nPaket: " + paket + "\nLink: " + link;
-  var url = "https://wa.me/62895324562321?text=" + encodeURIComponent(pesan);
-  window.open(url, "_blank");
+  if(!link) return alert("Isi link dulu");
+  if(total < minOrder) return alert("Minimal Rp 500");
+
+  let pesan=`Halo Admin
+Order ${jenis.toUpperCase()}
+
+Jumlah: ${jumlah}
+Total: Rp ${total}
+Link: ${link}`;
+
+  window.open("https://wa.me/62895324562321?text="+encodeURIComponent(pesan));
 }
 
-function orderViews() {
-  var link = document.getElementById("link3").value;
-  var paket = document.getElementById("paket3").value;
-
-  var pesan = "Halo Admin\nSaya mau order Views IG\n\nPaket: " + paket + "\nLink: " + link;
-  var url = "https://wa.me/62895324562321?text=" + encodeURIComponent(pesan);
-  window.open(url, "_blank");
+// ===== NOKOS =====
+function getHargaNokos(){
+  return Number(localStorage.getItem("hargaNokos")) || 5000;
 }
+
+function getStok(){
+  return Number(localStorage.getItem("stokNokos")) || 5;
+}
+
+function updateUI(){
+  document.getElementById("hargaNokos").innerText =
+  getHargaNokos().toLocaleString("id-ID");
+
+  document.getElementById("stokNokos").innerText =
+  "Stok: " + getStok();
+}
+
+function orderNokos(){
+  let stok = getStok();
+  if(stok <= 0) return alert("Nokos habis!");
+
+  let catatan = document.getElementById("catatanNokos").value;
+
+  localStorage.setItem("stokNokos", stok - 1);
+  updateUI();
+
+  let pesan=`Halo Admin 🚀
+Order NOKOS INDONESIA 🇮🇩
+
+Jumlah: 1
+Total: Rp ${getHargaNokos()}
+Catatan: ${catatan || "-"}`;
+
+  window.open("https://wa.me/62895324562321?text="+encodeURIComponent(pesan));
+}
+
+// ===== ADMIN =====
+function toggleAdmin(){
+  let box=document.getElementById("adminBox");
+  box.style.display = box.style.display==="none"?"block":"none";
+}
+
+function loginAdmin(){
+  let user=document.getElementById("adminUser").value;
+  let pass=document.getElementById("adminPass").value;
+
+  if(user==="admin" && pass==="kyzy123"){
+    document.getElementById("adminPanel").style.display="block";
+    document.getElementById("setHarga").value=getHargaNokos();
+    document.getElementById("setStok").value=getStok();
+  } else alert("Login salah!");
+}
+
+function saveAdmin(){
+  let harga=document.getElementById("setHarga").value;
+  let stok=document.getElementById("setStok").value;
+
+  localStorage.setItem("hargaNokos",harga);
+  localStorage.setItem("stokNokos",stok);
+
+  updateUI();
+  alert("Berhasil disimpan!");
+}
+
+// INIT
+updateUI();
+
 </script>
 
 </body>
